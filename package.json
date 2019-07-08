@@ -1,0 +1,36 @@
+{
+  "name": "report-server-api-sample",
+  "version": "1.0.0",
+  "description": "report-server-api Sample",
+  "scripts": {
+    "build": "webpack",
+    "dev": "webpack && webpack-dev-server --open --hot --inline"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "@types/axios": "^0.14.0",
+    "@types/react": "^16.0.5",
+    "@types/react-dom": "^15.5.4",
+    "@types/react-router-dom": "^4.0.7",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
+    "html-webpack-plugin": "^2.30.1",
+    "webpack": "^3.5.3",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^2.7.1"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "moment": "^2.18.1",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "react-router-dom": "^4.2.2",
+    "regenerator": "^0.14.1"
+  }
+}
