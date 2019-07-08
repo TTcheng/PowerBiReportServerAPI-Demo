@@ -40,10 +40,8 @@ export default class CatalogItemCard extends React.Component {
         <div className="card">
           <div className="card-content">
             <div className="content">
-              {<Link to={item.Path || '/'}>{item.Name}</Link>}
-              <br/>
-              {/*{item.Type === CatalogItemType.Folder ? <Link to={item.Path || '/'}>{item.Name}</Link> :*/}
-              {/*  <strong>{item.Name}</strong>}<br/>*/}
+              {item.Type === CatalogItemType.Folder ? <Link to={item.Path || '/'}>{item.Name}</Link> :
+                <strong>{item.Name}</strong>}<br/>
               {item.Description}<br/>
               <small>@{item.ModifiedBy}</small>
               <br/>
