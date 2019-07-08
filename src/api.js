@@ -1,4 +1,3 @@
-import {CatalogItem} from './api';
 import axiosLib from "axios";
 
 export class Api {
@@ -16,6 +15,7 @@ export class Api {
     });
   }
 
+  // noinspection JSUnusedGlobalSymbols,JSMethodCanBeStatic
   requestOptions(method, body) {
     return {
       credentials: 'include',
@@ -35,17 +35,13 @@ export class Api {
   }
 
   async postCatalogItemAsync(item) {
-    let url = `${this.serverUrl}/CatalogItems`;
     let response = await this.axios.post('/CatalogItems', item);
-    let createdItem = response.data;
-    return createdItem;
+    return response.data;
   }
 
   async meAsync() {
-    let url = `${this.serverUrl}/me`;
     let response = await this.axios.get('/me');
-    let item = response.data
-    return item;
+    return response.data;
   }
 
   async uploadFileAsync(file) {
@@ -95,13 +91,15 @@ export class Api {
   }
 
   getFileInfo(file) {
-    let p = new Promise < IFileInfo > ((res, rej) => {
+    // noinspection JSUnusedLocalSymbols
+    return new Promise((res, rej) => {
       let reader = new FileReader();
       let fileInfo = {
         name: file.name,
         extension: file.name.substring(file.name.lastIndexOf('.') + 1),
         size: file.size
       };
+      // noinspection JSUnusedLocalSymbols
       reader.onload = (metadata) => {
         fileInfo.content = reader.result.substring(reader.result.indexOf(',') + 1);
         fileInfo.contentType = reader.result.replace(/data:(.*);.*/, '$1');
@@ -110,8 +108,6 @@ export class Api {
 
       reader.readAsDataURL(file);
     });
-
-    return p;
   }
 }
 
