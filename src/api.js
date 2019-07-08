@@ -2,10 +2,10 @@ import {CatalogItem} from './api';
 import axiosLib from "axios";
 
 export class Api {
-  // serverUrl;
-  // axios;
+  serverUrl;
+  axios;
 
-  constructor(server = 'http://localhost:8080/reports') {
+  constructor(server = 'http://192.168.12.158:80/reports') {
     this.serverUrl = server;
     this.axios = axiosLib.create({
       baseURL: `${server}/api/v2.0`,

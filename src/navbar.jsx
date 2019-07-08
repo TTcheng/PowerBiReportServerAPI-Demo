@@ -4,14 +4,14 @@ import {api} from "./api";
 export class Navbar extends React.Component {
   constructor(props) {
     super(props);
-    this.handleFileUpload = (event) => {
-      let files = event.target.files;
-      api.uploadFileAsync(files[0]).then(
-        _ => location.reload()
-      );
-    };
   }
 
+  handleFileUpload = (event) => {
+    let files = event.target.files;
+    api.uploadFileAsync(files[0]).then(
+      () => location.reload()
+    );
+  };
 
   render() {
     return (
