@@ -1,8 +1,8 @@
 import * as React from 'react';
-import {api, CatalogItemType} from "./api";
+import {api} from "./api";
 import {Link} from "react-router-dom";
-import * as moment from 'moment';
 import {Navbar} from "./navbar";
+import CatalogItemCard from "./catalog-item-card"
 
 export class Home extends React.Component {
 
@@ -16,9 +16,9 @@ export class Home extends React.Component {
     api.getFolderItemsAsync().then((items) => this.setState({items: items.sort((a, b) => a.Type.localeCompare(b.Type))}));
   }
 
-  componentWillReceiveProps(props) {
-    this.setState({path: props.path.pathname, items: undefined});
-    api.getFolderItemsAsync(props.path.pathname)
+  componentWillReceiveProps(nextProps, nextContext) {
+    this.setState({path: nextProps.path.pathname, items: undefined});
+    api.getFolderItemsAsync(nextProps.path.pathname)
       .then((items) => this.setState({items: items.sort((a, b) => a.Type.localeCompare(b.Type))}));
   }
 
@@ -53,7 +53,7 @@ export class Home extends React.Component {
           <div className="container">
             <BreadCrumb path={this.state.path}/>
             <div className="columns is-multiline">
-              {this.state.items.map((item) => <CatalogItemTile item={item}/>)}
+              {this.state.items.map((item) => <CatalogItemCard item={item}/>)}
             </div>
           </div>
         </section>
@@ -61,44 +61,6 @@ export class Home extends React.Component {
     )
   }
 }
-
-let CatalogItemTile = ({item}) => {
-  let tagColor;
-
-  switch (item.Type) {
-    case CatalogItemType.Report:
-      tagColor = 'is-danger';
-      break;
-    case CatalogItemType.PowerBIReport:
-      tagColor = 'is-warning';
-      break;
-    case CatalogItemType.Folder:
-      tagColor = 'is-info';
-      break;
-    default:
-      tagColor = 'is-primary';
-      break;
-  }
-
-  return (
-    <div className="column is-3">
-      <div className="card">
-        <div className="card-content">
-          <div className="content">
-            {item.Type === CatalogItemType.Folder ? <Link to={item.Path || '/'}>{item.Name}</Link> :
-              <strong>{item.Name}</strong>}<br/>
-            {item.Description}<br/>
-            <small>@{item.ModifiedBy}</small>
-            <br/>
-            <small>{moment(item.ModifiedDate).format('lll')}</small>
-            <br/>
-            <div className={`tag ${tagColor}`}>{item.Type.toUpperCase()}</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-};
 
 let BreadCrumb = ({path}) => {
   let parts = path.substring(1).split('/');

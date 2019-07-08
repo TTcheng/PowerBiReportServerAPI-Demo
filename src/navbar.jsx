@@ -18,7 +18,7 @@ export class Navbar extends React.Component {
       <header className="nav">
         <div className="container">
           <div className="nav-left">
-            <div className="nav-item is-paddingless"><h1 className="title">CONTOSO</h1></div>
+            <div className="nav-item is-paddingless"><h1 className="title">PowerBI Report Server API Demo</h1></div>
           </div>
           <div className="nav-right nav-menu">
             <div className="nav-item">

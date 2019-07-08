@@ -15,7 +15,7 @@ export class Api {
     });
   }
 
-  // noinspection JSUnusedGlobalSymbols,JSMethodCanBeStatic
+  // noinspection JSUnusedGlobalSymbols
   requestOptions(method, body) {
     return {
       credentials: 'include',
