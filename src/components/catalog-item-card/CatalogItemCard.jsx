@@ -14,6 +14,10 @@ export default class CatalogItemCard extends React.Component {
     this.initTagColor(this.props);
   }
 
+  componentWillReceiveProps(nextProps, nextContext) {
+    this.initTagColor(nextProps);
+  }
+
   initTagColor = (props) => {
     const {item} = props;
     switch (item.Type) {
