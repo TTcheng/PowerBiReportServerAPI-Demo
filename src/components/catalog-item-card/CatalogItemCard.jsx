@@ -1,7 +1,7 @@
-import {CatalogItemType} from "./api";
 import {Link} from "react-router-dom";
 import * as moment from "moment";
 import * as React from "react";
+import {CatalogItemType} from "../../api";
 
 export default class CatalogItemCard extends React.Component {
   state = {};
@@ -32,6 +32,17 @@ export default class CatalogItemCard extends React.Component {
     }
   };
 
+  warpTitle = () => {
+    const {item, openFolder} = this.props;
+    if (item.Type === CatalogItemType.Folder) {
+      return <a onClick={() => openFolder(item.Path)}>{item.Name}</a>;
+    }
+    if (item.Type.endsWith(CatalogItemType.Report)) {
+      return <Link to={{pathname: "/view", item}}>{item.Name}</Link>;
+    }
+    return <strong>{item.Name}</strong>
+  };
+
   render() {
     const {item} = this.props;
     const {tagColor} = this.state;
@@ -40,8 +51,7 @@ export default class CatalogItemCard extends React.Component {
         <div className="card">
           <div className="card-content">
             <div className="content">
-              {item.Type === CatalogItemType.Folder ? <Link to={item.Path || '/'}>{item.Name}</Link> :
-                <strong>{item.Name}</strong>}<br/>
+              {this.warpTitle()}<br/>
               {item.Description}<br/>
               <small>@{item.ModifiedBy}</small>
               <br/>

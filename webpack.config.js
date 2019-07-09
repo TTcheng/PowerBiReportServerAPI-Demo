@@ -1,3 +1,4 @@
+// noinspection NodeJsCodingAssistanceForCoreModules
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -13,6 +14,11 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test:/\.css$/,
+        exclude:/node_modules/,
+        loader:'style-loader!css-loader'
+      },
       {
         test: /\.jsx?$/, //js或jsx ,x?表示匹配x字符0次或1次
         exclude: /node_modules/,
@@ -43,13 +49,6 @@ module.exports = {
   },
   devServer: {
     historyApiFallback: true,
-    // host: '0.0.0.0',
-    // proxy: {
-    //   '/reports': {
-    //     target: 'http://192.168.12.158:80',
-    //     pathRewrite: {'^/reports' : ''}
-    //   }
-    // }
   },
   // Enable sourcemaps for debugging webpack's output.
   devtool: 'inline-source-map',

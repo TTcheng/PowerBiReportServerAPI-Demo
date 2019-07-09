@@ -3,4 +3,5 @@
 /node_modules/
 *.iml
 yarn.lock
+yarn-error.log
 package-lock.json
