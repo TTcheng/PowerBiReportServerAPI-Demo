@@ -7,10 +7,13 @@ export class Navbar extends React.Component {
   }
 
   handleFileUpload = (event) => {
+    const {path} = this.props;
     let files = event.target.files;
-    api.uploadFileAsync(files[0]).then(
+    api.uploadFileAsync(files[0], path).then(
       () => location.reload()
-    );
+    ).catch(()=>{
+      alert('上传失败！');
+    });
   };
 
   render() {

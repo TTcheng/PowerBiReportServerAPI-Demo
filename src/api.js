@@ -15,7 +15,7 @@ export class Api {
     });
   }
 
-  // noinspection JSUnusedGlobalSymbols
+  // noinspection JSUnusedGlobalSymbols,JSMethodCanBeStatic
   requestOptions(method, body) {
     return {
       credentials: 'include',
@@ -44,10 +44,8 @@ export class Api {
     return response.data;
   }
 
-  async uploadFileAsync(file) {
+  async uploadFileAsync(file, path) {
     let fileInfo = await this.getFileInfo(file);
-    let path = window.location.hash.substring(1);
-    path = path.length > 1 ? path : '';
     let item = {
       Content: fileInfo.content,
       Path: `${path}/${fileInfo.name}`,

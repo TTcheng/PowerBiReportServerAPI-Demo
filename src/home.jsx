@@ -34,16 +34,15 @@ export class Home extends React.Component {
 
   render() {
     const {items, user, path} = this.state;
-    if (!items)
-      return (
-        <Loading user={user}/>
-      );
+    if (!items){
+      return (<Loading/>);
+    }
 
     return (
       <div>
         <section className="hero is-warning is-small">
           <div className="hero-head">
-            <Navbar user={user}/>
+            <Navbar user={user} path={path}/>
           </div>
           <div className="hero-body">
             <div className="container">
