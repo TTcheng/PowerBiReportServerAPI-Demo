@@ -109,7 +109,7 @@ export class Api {
   }
 }
 
-export const api = new Api();
+export const api = new Api("http://localhost:8090/reports");
 
 
 export const CatalogItemType = {
